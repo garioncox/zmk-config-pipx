@@ -1,0 +1,80 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+
+# define DEFAULT 0
+# define NUM 1
+# define NAV 2
+
+// # define BTL 3
+//
+
+/ {
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <125>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            // -----------------------------------------------------------------------------------------
+            // | TAB  |  Q   |  W  |  F  |  P  |   B  |        |  J  |  L  |  U  |  Y  |   '   | esc |
+            // | ALT  |  A   |  R  |  S  |  T  |   G  |        |  M  |  N  |  E  |  I  |   O   |  ;  |
+            // | CTRL |  Z   |  X  |  C  |  D  |   V  |        |  K  |  H  |  ,  |  .  |   /   | gui |
+            //        | LEFT |   (NAV) BSPC    | SHFT |        | RET |    (NUM) SPC    | RIGHT |
+
+            bindings = <
+&kp TAB    &kp Q  &kp W  &kp F         &kp P         &kp B        &kp J    &kp L          &kp U          &kp Y    &kp SQT   &kp ESC
+&kp LALT   &kp A  &kp R  &kp S         &kp T         &kp G        &kp M    &kp N          &kp E          &kp I    &kp O     &kp SEMI
+&kp LCTRL  &kp Z  &kp X  &kp C         &kp D         &kp V        &kp K    &kp H          &kp COMMA      &kp DOT  &kp FSLH  &kp LGUI
+                         &lt NAV LEFT  &lt NUM BSPC  &kp LSHFT    &kp RET  &lt NUM SPACE  &lt NAV RIGHT
+            >;
+        };
+
+        number_layer {
+            // -----------------------------------------------------------------------------------------
+            // | x | 1 | 2 | 3 | 4 | 5 |        | 6 | 7 | 8 | 9 | 0 | ` |
+            // | x | < | [ | { | ( | @ |        | $ | ) | } | ] | > | ~ |
+            // | x | % | & | ^ | ! | + |        | - | = | * | # | \ | x |
+            //             |   |   |   |        |   |   |   |
+
+            bindings = <
+&trans  &kp N1     &kp N2    &kp N3     &kp N4    &kp N5      &kp N6      &kp N7     &kp N8    &kp N9     &kp N0    &kp GRAVE
+&trans  &kp LT     &kp LBKT  &kp LBRC   &kp LPAR  &kp AT      &kp DOLLAR  &kp RPAR   &kp RBRC  &kp RBKT   &kp GT    &kp TILDE
+&trans  &kp PRCNT  &kp AMPS  &kp CARET  &kp EXCL  &kp PLUS    &kp MINUS   &kp EQUAL  &kp STAR  &kp POUND  &kp BSLH  &trans
+                             &trans     &trans    &trans      &trans      &trans     &trans
+            >;
+        };
+
+        navigation_layer {
+            // -----------------------------------------------------------------------------------------
+            // |   | BT1 | BT2 | BT3 |     |       |        |     |      |  UP |     |     |        |
+            // |   | F1  | F2  | F3  | F11 |  F12  |        |     | LFT  | DWN | RGT |     |        |
+            // |   |     |     | USB |  BT | BTCLR |        |     | HOME |     | END |     | ALT+F4 |
+            //                 |     |     |       |        |     |      |     |
+
+            bindings = <
+&trans  &kp F1        &kp F2        &kp F3        &kp F4        &kp F5        &kp F11       &kp F12   &kp UP    &none      &none  &none
+&trans  &kp F6        &kp F7        &kp F8        &kp F9        &kp F10       &none         &kp LEFT  &kp DOWN  &kp RIGHT  &none  &none
+&trans  &bt BT_SEL 0  &bt BT_SEL 1  &out OUT_USB  &out OUT_BLE  &bt BT_CLR    &bt BT_SEL 2  &kp HOME  &none     &kp END    &none  &kp LA(F4)
+                                    &trans        &trans        &trans        &trans        &trans    &trans
+            >;
+        };
+    };
+};
