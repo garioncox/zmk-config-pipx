@@ -40,9 +40,9 @@
             //        | LEFT |   (NAV) BSPC    | SHFT |        | RET |    (NUM) SPC    | RIGHT |
 
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp F         &kp P         &kp B        &kp J    &kp L          &kp U          &kp Y    &kp SQT   &kp ESC
-&kp LALT   &kp A  &kp R  &kp S         &kp T         &kp G        &kp M    &kp N          &kp E          &kp I    &kp O     &kp SEMI
-&kp LCTRL  &kp Z  &kp X  &kp C         &kp D         &kp V        &kp K    &kp H          &kp COMMA      &kp DOT  &kp FSLH  &kp LGUI
+&kp TAB    &kp Q  &kp W  &kp E         &kp R         &kp T        &kp Y    &kp U          &kp I          &kp O    &kp P   &kp ESC
+&kp LALT   &kp A  &kp S  &kp D         &kp F         &kp G        &kp H    &kp J          &kp K          &kp L    &kp ;     &kp SQT
+&kp LCTRL  &kp Z  &kp X  &kp C         &kp V         &kp B        &kp N    &kp M          &kp COMMA      &kp DOT  &kp FSLH  &kp LGUI
                          &lt NAV LEFT  &lt NUM BSPC  &kp LSHFT    &kp RET  &lt NUM SPACE  &lt NAV RIGHT
             >;
         };
