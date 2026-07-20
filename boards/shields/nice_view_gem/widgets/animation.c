@@ -1,6 +1,7 @@
-#include <stdlib.h>
 #include <zephyr/kernel.h>
 #include "animation.h"
+
+#define NICE_VIEW_GEM_STATIC_FRAME_INDEX 0
 
 LV_IMG_DECLARE(crystal_01);
 LV_IMG_DECLARE(crystal_02);
@@ -37,11 +38,7 @@ void draw_animation(lv_obj_t *canvas) {
 #else
     lv_obj_t *art = lv_img_create(canvas);
 
-    int length = sizeof(anim_imgs) / sizeof(anim_imgs[0]);
-    srand(k_uptime_get_32());
-    int random_index = rand() % length;
-
-    lv_img_set_src(art, anim_imgs[random_index]);
+    lv_img_set_src(art, anim_imgs[NICE_VIEW_GEM_STATIC_FRAME_INDEX]);
 #endif
 
     lv_obj_align(art, LV_ALIGN_TOP_LEFT, 36, 0);
